@@ -1,0 +1,45 @@
+Motor:https://variometrum.hu/meghajtas-kategoria/leptetomotor-kategoria/nema-23-57mm-kategoria/1-2nm-leptetomotor-hibrid-bipolaris-57hs54-3004a
+Data:https://variometrum.hu/pdf/57hs54_3004a08_d2100_hun.pdf
+Angle step:1,8deg
+
+Chip:https://variometrum.hu/elektronika-kategoria/arduino_uno_atmega328p_rev3
+Code ex1.:https://blog.hobbycomponents.com/?p=460
+Code ex2.:https://create.arduino.cc/projecthub/MisterBotBreak/how-to-code-step-motor-e3e228
+
+Minimal distance between grapples:0mm
+Maximal distance between grapples:54mm
+Req. step for full open: 137,51 -> 137
+Total opening distance: 53,7998mm
+Safety steps (amount of steps that are safe to operate at, no risk of grapples falling out): 130 steps, Distance: 51,0509 mm
+
+UR3 dataset:https://s3-eu-west-1.amazonaws.com/ur-support-site/41166/UR3e_User_Manual_en_Global.pdf
+Conn. parameters:page 37
+Motor jumper wires: https://www.newark.com/adafruit/759/wire-gauge-28awg/dp/88W2571?COM=ref_hackster
+
+Fogaskerék kialakítás:
+modul(m):1mm
+fogszám(z):24
+Csatlakozó keresztmetszet:~25mm
+
+Code (req Arduino stepper library)
+
+#include <Stepper.h> 
+
+int numberofstep = 48*64; 
+                                  
+
+Stepper motor(numberofstep,9,11,10,6);    // we use pins 9, 11, 10, 6        
+void setup() 
+{ 
+ 
+  motor.setSpeed(9); // we set motor speed at 9
+}
+void loop() 
+{ 
+  motor.step(130); // the motor will run during 130 step (you can change the step)
+  motor.step(-130); // the motor will run during 130 step in reverse (you can change the step)
+
+}
+
+Stepper motor driver(not sure if necessary):
+https://hobbycomponents.com/motor-drivers/547-stepper-motor-driver-a4988
